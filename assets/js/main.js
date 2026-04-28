@@ -1,9 +1,19 @@
-/* ========================================
-   株式会社縁 サンプルサイト v1 - Common JS
-======================================== */
+/* =========================================================
+   株式会社縁 — Common JS
+========================================================= */
 
 (() => {
-  // ---------- Mobile menu ----------
+  // Header scroll state
+  const header = document.querySelector('.header');
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 8) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu
   const toggle = document.querySelector('.menu-toggle');
   const gnav = document.querySelector('.gnav');
   if (toggle && gnav) {
@@ -13,51 +23,40 @@
     });
   }
 
-  // ---------- Filter (works page) ----------
+  // Filter (works)
   const filterButtons = document.querySelectorAll('.filter-btn');
-  const workCards = document.querySelectorAll('.work-card');
-  filterButtons.forEach(btn => {
+  const works = document.querySelectorAll('.work');
+  filterButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const cat = btn.dataset.cat;
-      filterButtons.forEach(b => b.classList.remove('is-active'));
+      filterButtons.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      workCards.forEach(card => {
-        if (cat === 'all' || card.dataset.cat === cat) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+      works.forEach((w) => {
+        w.style.display = cat === 'all' || w.dataset.cat === cat ? '' : 'none';
       });
     });
   });
 
-  // ---------- Form (sample, prevent submit) ----------
+  // Form (sample, prevent submit)
   const form = document.querySelector('.form');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('サンプル画面のためお問合せは送信されません。\n本番では入力内容がメールとLINE公式に通知されます。');
+      alert('サンプル画面のためお問合せは送信されません。\n本番ではメールとLINE公式に通知が届く設計です。');
     });
   }
 
-  // ---------- Fade in on scroll ----------
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('[data-fade]').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.7s, transform 0.7s';
-    observer.observe(el);
-  });
-  document.addEventListener('DOMContentLoaded', () => {
-    const style = document.createElement('style');
-    style.textContent = '[data-fade].is-visible { opacity: 1 !important; transform: translateY(0) !important; }';
-    document.head.appendChild(style);
-  });
+  // Reveal on scroll
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
 })();
