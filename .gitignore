@@ -5,3 +5,6 @@ node_modules/
 *.log
 .env
 .env.local
+
+# Raw originals (curated optimized copies live in assets/img/works/)
+/img/
