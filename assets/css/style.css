@@ -1321,6 +1321,81 @@ body {
   .case-spec__table th { width: 110px; font-size: 10px; padding-right: 14px; }
 }
 
+/* ---------- Cleaning Gallery ---------- */
+.cleaning-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.cleaning-card {
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.cleaning-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 48px rgba(27, 41, 64, 0.08);
+}
+.cleaning-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-alt);
+}
+.cleaning-card figcaption {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cleaning-card__tag {
+  font-family: var(--ff-en);
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.cleaning-card__title {
+  font-family: var(--ff-serif);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.cleaning-card__desc {
+  font-size: 13px;
+  color: var(--text-mute);
+  line-height: 1.85;
+  margin-top: 2px;
+}
+
+.cleaning-card--feature {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.cleaning-card--feature img { aspect-ratio: 4 / 4.2; }
+.cleaning-card--feature figcaption { padding: 28px 32px 32px; }
+.cleaning-card--feature .cleaning-card__title { font-size: 22px; }
+.cleaning-card--feature .cleaning-card__desc { font-size: 14px; }
+
+@media (max-width: 1024px) {
+  .cleaning-gallery { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .cleaning-card--feature { grid-column: span 2; grid-row: auto; }
+  .cleaning-card--feature img { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 768px) {
+  .cleaning-gallery { grid-template-columns: 1fr; gap: 20px; }
+  .cleaning-card--feature { grid-column: span 1; }
+  .cleaning-card--feature img { aspect-ratio: 4 / 5; }
+  .cleaning-card figcaption { padding: 18px 20px 22px; }
+}
+
 /* ---------- Filters ---------- */
 .filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-bottom: 80px; }
 .filter-btn {
