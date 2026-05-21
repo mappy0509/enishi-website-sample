@@ -700,7 +700,21 @@ body {
   margin-bottom: 24px;
   color: var(--text);
 }
-.about-preview__cta { margin-top: 40px; }
+.about-preview__cta { margin-top: 40px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+.about-preview__ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ff-en);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  transition: color 0.3s var(--ease);
+}
+.about-preview__ig:hover { color: var(--accent-dk); }
+.about-preview__ig svg { width: 18px; height: 18px; color: var(--accent); }
+.about-preview__ig small { font-family: var(--ff-num); font-style: normal; letter-spacing: 0.04em; opacity: 0.7; }
 .section__more { text-align: center; margin-top: 80px; }
 @media (max-width: 768px) {
   .section__more { margin-top: 48px; }
@@ -760,6 +774,53 @@ body {
 .footer__nav-list a { transition: color 0.3s; }
 .footer__nav-list a:hover { color: var(--accent); }
 .footer__bottom { padding-top: 28px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: var(--ff-num); font-size: 11px; letter-spacing: 0.18em; color: rgba(250,247,242,0.4); text-transform: uppercase; }
+
+.footer__social {
+  padding: 28px 0;
+  margin-top: 8px;
+  border-top: 1px solid rgba(250, 247, 242, 0.1);
+  border-bottom: 1px solid rgba(250, 247, 242, 0.1);
+  margin-bottom: 28px;
+}
+.footer__social-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.footer__social-label {
+  font-family: var(--ff-en);
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px;
+  border: 1px solid rgba(250, 247, 242, 0.18);
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: rgba(250, 247, 242, 0.88);
+  transition: all 0.35s var(--ease);
+}
+.footer__social-link:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+.footer__social-link svg { width: 18px; height: 18px; }
+.footer__social-link small { opacity: 0.7; font-family: var(--ff-num); letter-spacing: 0.04em; margin-left: 4px; }
+@media (max-width: 768px) {
+  .footer__social-row { gap: 12px; }
+  .footer__social-link { padding: 10px 16px; font-size: 12px; }
+}
 
 /* ---------- Page Hero (Subpages) ---------- */
 .page-hero {
