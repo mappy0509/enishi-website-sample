@@ -314,7 +314,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1776831234992-57ee0eaa9bbf?w=1600&q=85') center/cover;
+  background: url('../img/works/case01/after-02-ldk-wide.jpg') center/cover;
   filter: saturate(0.85) contrast(1.05);
 }
 .hero__visual::after {
@@ -969,6 +969,36 @@ body {
 .svc-row__visual { aspect-ratio: 4 / 5; overflow: hidden; position: relative; }
 .svc-row__visual img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.85) contrast(1.04); }
 .svc-row__visual::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--accent); transform: translate(16px, 16px); pointer-events: none; }
+
+.svc-row__visual--coming {
+  background: linear-gradient(135deg, var(--bg-alt) 0%, var(--line) 100%);
+  display: grid;
+  place-items: center;
+}
+.svc-row__visual--coming::before {
+  content: "Photo Coming Soon";
+  font-family: var(--ff-en);
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 24px;
+  z-index: 1;
+}
+.svc-row__visual--coming .svc-row__visual-note {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  font-family: var(--ff-sans);
+  z-index: 1;
+}
 .svc-row__num {
   font-family: var(--ff-en);
   font-style: italic;
@@ -1517,7 +1547,7 @@ body {
         rgba(15, 31, 51, 0.94) 100%
       ),
       linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)),
-      url('https://images.unsplash.com/photo-1776831234992-57ee0eaa9bbf?w=1600&q=85') center 40% / cover no-repeat;
+      url('../img/works/case01/after-02-ldk-wide.jpg') center 40% / cover no-repeat;
     background-color: #1B2940;
   }
   .hero .container { width: 100%; }
