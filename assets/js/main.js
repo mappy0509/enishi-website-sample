@@ -20,6 +20,7 @@
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('is-open');
       gnav.classList.toggle('is-open');
+      document.body.classList.toggle('menu-open');
     });
   }
 
