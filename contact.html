@@ -115,7 +115,11 @@
       </div>
     </header>
 
-    <form class="form" novalidate data-reveal>
+    <form class="form" id="contactForm" data-reveal>
+      <div class="form__hp" aria-hidden="true">
+        <label for="company">会社名（入力不要）</label>
+        <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+      </div>
       <div class="form__row">
         <label for="name">お名前<span class="req">— Required</span></label>
         <input type="text" id="name" name="name" placeholder="例：山田 太郎" required>
@@ -171,12 +175,66 @@
         </label>
       </div>
       <div class="form__submit">
-        <button type="submit" class="btn btn--ink btn--lg">この内容で送信する</button>
+        <button type="submit" class="btn btn--ink btn--lg">この内容でメールを送る</button>
       </div>
-      <p class="form-note">※ サンプル画面のため、実際の送信は行われません。</p>
+      <p class="form-note">※ 送信ボタンを押すと、ご利用のメールアプリが入力済みの状態で起動します。そのまま送信してください。</p>
     </form>
+
+    <div class="form-complete" id="formComplete" hidden data-reveal>
+      <p class="form-complete__eyebrow">— Thank you</p>
+      <h3 class="form-complete__title">メールアプリを起動しました</h3>
+      <p class="form-complete__desc">
+        入力いただいた内容が反映されています。<br>
+        内容をご確認のうえ、そのまま「送信」してください。<br><br>
+        メールアプリが起動しない場合は、お手数ですが<br>
+        <a href="mailto:s.okazaki.en@gmail.com">s.okazaki.en@gmail.com</a> まで直接ご連絡ください。
+      </p>
+    </div>
   </div>
 </section>
+
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+  var TO = 's.okazaki.en@gmail.com';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if ((form.elements['company'] && form.elements['company'].value.trim()) !== '') return;
+    var v = function (n) {
+      var el = form.elements[n];
+      return el ? String(el.value || '').trim() : '';
+    };
+    var name = v('name');
+    var category = v('category') || 'お問い合わせ';
+    var subject = '【縁HP】' + category + '（' + name + ' 様より）';
+    var lines = [
+      '■ お名前　　　 : ' + name,
+      '■ ふりがな　　 : ' + v('kana'),
+      '■ 電話番号　　 : ' + v('tel'),
+      '■ メールアドレス: ' + v('email'),
+      '■ 物件のエリア : ' + v('area'),
+      '■ ご相談の種類 : ' + category,
+      '■ 希望の連絡方法: ' + v('contact_pref'),
+      '',
+      '■ ご相談内容:',
+      v('message'),
+      '',
+      '----------------------------------------',
+      '※ 株式会社縁 公式サイトのお問い合わせフォームから送信されました。'
+    ];
+    var body = lines.join('\r\n');
+    var url = 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = url;
+    form.hidden = true;
+    var done = document.getElementById('formComplete');
+    if (done) {
+      done.hidden = false;
+      done.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+})();
+</script>
 
 <footer class="footer">
   <div class="container">
