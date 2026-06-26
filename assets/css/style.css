@@ -314,7 +314,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('../img/works/case01/after-02-ldk-wide.jpg') center/cover;
+  background: url('../img/hero/hero-en.jpg') center/cover;
   filter: saturate(0.85) contrast(1.05);
 }
 .hero__visual::after {
@@ -938,7 +938,15 @@ body {
   background: var(--bg-alt);
   overflow: hidden;
 }
-.greeting__photo::before {
+.greeting__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: saturate(0.92) contrast(1.04);
+  display: block;
+}
+.greeting__photo:not(:has(img))::before {
   content: "PHOTO\AComing soon";
   white-space: pre;
   position: absolute;
